@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.model.Categories;
 import com.example.model.Products;
+import com.example.model.Vendors;
 import com.example.service.ProductsService;
 
 @RestController
@@ -34,21 +36,29 @@ public class ProductsController {
 		return service.getProductById(id);
 	}
 	
-	@GetMapping("/searchByName/{name}")
-	public List<Products> getProductByName(@PathVariable String name) {
-		System.out.println("inside");
-		return service.getProductByName(name);
+	@GetMapping("/getCategories")
+	public List<Categories> getCategories() {		
+		return service.getCategories();
+	}
+	
+	@GetMapping("/getVendors/{categoryId}")
+	public List<Vendors> getVendors(@PathVariable int categoryId) {		
+		return service.getVendors(categoryId);
+	}
+	
+	
+	@GetMapping("/getMaxProductId")
+	public List<Integer> getMaxProductId() {
+		return service.getMaxProductId();
 	}
 	
 	@PostMapping("/addProduct")
 	public Products addProduct(@RequestBody Products product) {
-		System.out.println(product);
 		return service.addProduct(product);
 	}
 	
 	@PutMapping("/updateProduct/{id}")
 	public Products updateProduct(@RequestBody Products product,@PathVariable int id ) {
-		System.out.println(product);
 		return service.updateProduct(product,id);
 	}
 	

@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.model.Categories;
 import com.example.model.Products;
+import com.example.model.Vendors;
 import com.example.repository.ProductsRepository;
 
 @Service
@@ -22,12 +24,12 @@ public class ProductsService {
 		return repository.getProductById(id);
 	}
 	
-	public List<Products> getProductByName(String name) {
-		return repository.getProductByName(name);
-	}
-
 	public Products addProduct(Products product) {
 		return repository.addProduct(product);
+	}
+	
+	public List<Integer> getMaxProductId() {
+		return repository.getMaxProductId();
 	}
 	
 	public Products updateProduct(Products product,int id) {
@@ -36,6 +38,14 @@ public class ProductsService {
 	
 	public int deleteProduct(int id) {
 		return repository.deleteProduct(id);
+	}
+	
+	public List<Categories> getCategories() {		
+		return repository.getCategories();
+	}
+	
+	public List<Vendors> getVendors(int categoryId) {		
+		return repository.getVendors(categoryId);
 	}
 
 }
