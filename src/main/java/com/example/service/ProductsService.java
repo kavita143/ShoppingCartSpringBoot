@@ -24,6 +24,11 @@ public class ProductsService {
 		return repository.getProductById(id);
 	}
 	
+	
+	public List<Products> getProductsByName(String name) {
+		return repository.getProductsByName(name);
+	}
+
 	public Products addProduct(Products product) {
 		return repository.addProduct(product);
 	}

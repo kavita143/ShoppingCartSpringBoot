@@ -35,12 +35,22 @@ public class ProductsRepository {
 		List<Vendors> vendorsList = template.query(sql, rowMapper, categoryId);
 		return vendorsList;
 	}
+	
+	
 
 	public Products getProductById(int id) {
 		String sql = "select * from product_list where product_id=?";
 		ProductsRowMapper rowMapper = new ProductsRowMapper();
 		Products product = template.queryForObject(sql, rowMapper, id);
 		return product;
+	}
+
+	public List<Products> getProductsByName(String name) {
+		String sql = "select * from product_list where product_name = ?";
+		ProductsRowMapper rowMapper = new ProductsRowMapper();
+		List<Products> products = template.query(sql, rowMapper, name);
+		System.out.println("test"+products);
+		return products;
 	}
 
 	public List<Integer> getMaxProductId() {

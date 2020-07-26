@@ -46,7 +46,11 @@ public class ProductsController {
 		return service.getVendors(categoryId);
 	}
 	
-	
+	@GetMapping("/searchByName/{name}")
+	public List<Products> getProductByName(@PathVariable String name) {
+		return service.getProductsByName(name);
+	}
+			
 	@GetMapping("/getMaxProductId")
 	public List<Integer> getMaxProductId() {
 		return service.getMaxProductId();
